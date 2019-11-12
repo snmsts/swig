@@ -1296,14 +1296,14 @@ cffi_cpp: $(SRCDIR_SRCS)
 # -----------------------------------------------------------------
 
 cffi_run:
-	$(RUNTOOL) $(CFFI) -batch -s $(CFFI_SCRIPT) $(RUNPIPE)
+	$(RUNTOOL) $(CFFI) -l $(CFFI_SCRIPT) $(RUNPIPE)
 
 # -----------------------------------------------------------------
 # Version display
 # -----------------------------------------------------------------
 
 cffi_version:
-	$(CFFI) --version
+	$(CFFI) -e "(format t \"~{~A~^ ~}~%\" (list (lisp-implementation-type) (lisp-implementation-version) (ql-dist:release (ql-dist:find-system :cffi))))" -q
 
 # -----------------------------------------------------------------
 # Cleaning the CFFI examples
