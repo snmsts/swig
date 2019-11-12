@@ -1861,6 +1861,25 @@ fi
 AC_SUBST(MZDYNOBJ)
 
 #----------------------------------------------------------------
+# Look for CFFI (roswell)
+#----------------------------------------------------------------
+
+AC_ARG_WITH(cffi, AS_HELP_STRING([--without-cffi], [Disable cffi])
+AS_HELP_STRING([--with-cffi=path], [Set location of cffi(roswell) executable]),[ CFFIBIN="$withval"], [CFFIBIN="$alllang_default"])
+
+# First, check for "--without-cffi" or "--with-cffi=no".
+if test x"${CFFIBIN}" = xno; then
+  AC_MSG_NOTICE([Disabling cffi])
+else
+  if test "x$CFFIBIN" = xyes; then
+     AC_PATH_PROG(CFFIBIN, ros)
+  else
+     CFFIBIN="$CFFIBIN"
+  fi
+fi
+AC_SUBST(CFFIBIN)
+
+#----------------------------------------------------------------
 # Look for Ruby
 #----------------------------------------------------------------
 
@@ -2647,9 +2666,9 @@ fi
 AC_SUBST(SKIP_R)
 
 SKIP_CFFI=
-#if test -z "$CFFIBIN" ; then
+if test -z "$CFFIBIN" ; then
     SKIP_CFFI="1"
-#fi
+fi
 AC_SUBST(SKIP_CFFI)
 
 SKIP_SCILAB=
