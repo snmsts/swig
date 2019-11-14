@@ -1279,7 +1279,7 @@ allegrocl_clean:
 ##################################################################
 
 CFFI = @CFFIBIN@
-CFFI_SCRIPT=$(RUNME).lisp
+CFFI_SCRIPT=$(RUNME).ros
 
 cffi: $(SRCDIR_SRCS)
 	$(SWIG) -cffi $(SWIGOPT) -o $(ISRCS) $(INTERFACEPATH)
@@ -1296,7 +1296,7 @@ cffi_cpp: $(SRCDIR_SRCS)
 # -----------------------------------------------------------------
 
 cffi_run:
-	$(RUNTOOL) $(CFFI) -l $(CFFI_SCRIPT) $(RUNPIPE)
+	$(RUNTOOL) $(CFFI) $(CFFI_SCRIPT) $(RUNPIPE)
 
 # -----------------------------------------------------------------
 # Version display
