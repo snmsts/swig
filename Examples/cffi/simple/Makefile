@@ -11,7 +11,8 @@ check: build
 build:
 	$(MAKE) -f $(TOP)/Makefile SRCDIR='$(SRCDIR)' SRCS='$(SRCS)' \
 	SWIG_LIB_DIR='$(SWIG_LIB_DIR)' SWIGEXE='$(SWIGEXE)' \
-	TARGET='$(TARGET)' INTERFACE='$(INTERFACE)' cffi
+	SWIGOPT='-cwrap' \
+	TARGET='$(TARGET)' INTERFACE='$(INTERFACE)' cffi_c
 
 clean:
 	$(MAKE) -f $(TOP)/Makefile SRCDIR='$(SRCDIR)' TARGET='$(TARGET)' cffi_clean
